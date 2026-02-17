@@ -2,7 +2,12 @@ services:
   server:
     build:
       context: .
+      args:
+        - HTTP_PROXY=http://127.0.0.1:8118
+        - HTTPS_PROXY=http://127.0.0.1:8118
+        - NO_PROXY=localhost,127.0.0.1
       dockerfile: Dockerfile
+      network: host
     ports:
       - 8000:8000
     restart: unless-stopped
